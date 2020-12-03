@@ -7,7 +7,7 @@ test('renders without errors', () =>{
     render(<ContactForm />)
 })
 
-test('user can fill out and submit form', async () =>{
+test('user can fill out and submit form and data is posted to API', async () =>{
     //Arrange
     render(<ContactForm />)
 

@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios"
 
 const ContactForm = () => {
   const [data, setData] = useState();
   const { register, errors, handleSubmit } = useForm({
     mode: "onBlur",
   });
-  const onSubmit = (data) => {
-    setData(data);
+  const onSubmit = async (data) => {
+    const sendData = await axios.post('https://reqres.in/api/users', data)
+    setData(sendData.data);
   };
 
   return (
@@ -40,11 +42,12 @@ const ContactForm = () => {
         </div>
 
         <div>
-          <label htmlFor="email" placeholder="bluebill1049@hotmail.com">
+          <label htmlFor="email">
             Email*
           </label>
           <input 
             id="email"
+            placeholder="bluebill1049@hotmail.com"
             name="email" 
             ref={register({ required: true })} 
           />
